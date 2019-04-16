@@ -1,0 +1,48 @@
+#page1 {
+	background: url('../image/spaceship2-1-10801920.jpg') center no-repeat;
+	background-size: 100% 100%;
+	back
+}
+.parah {
+    /*margin: 0 auto;*/
+    border: 1px solid #f000;
+}
+.in-parah {
+    text-align: center;
+}
+
+#music-div #audio-btn{width: 44px;height: 44px; margin:100px auto;background-size: 100% 100%;}
+#music-div .on{background: url('../image/music-64.png') no-repeat 0 0;-webkit-animation: rotating 1.2s linear infinite;animation: rotating 1.2s linear infinite;}
+#music-div .off{background: url('../image/music-64.png') no-repeat 0 0;}
+@-webkit-keyframes rotating {
+	from{
+		-webkit-transform: rotate(0deg);
+		-moz-transform: rotate(0deg);
+		-ms-transform: rotate(0deg);
+		-o-transform: rotate(0deg);
+    	transform: rotate(0deg);
+	}
+	to{
+		-webkit-transform: rotate(360deg);
+		-moz-transform: rotate(360deg);
+		-ms-transform: rotate(360deg);
+		-o-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+}
+@keyframes rotating {
+    from{
+        -webkit-transform: rotate(0deg);
+		-moz-transform: rotate(0deg);
+		-ms-transform: rotate(0deg);
+		-o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to{
+        -webkit-transform: rotate(360deg);
+		-moz-transform: rotate(360deg);
+		-ms-transform: rotate(360deg);
+		-o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
