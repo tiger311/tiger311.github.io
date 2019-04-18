@@ -59,7 +59,7 @@ let app = {
             return;
         }
         for (var i = 0; i < pages.length; i++) {
-            pages[i].style.left = leftBack[i] - change + 'px';
+            pages[i].style.left = (leftBack[i] - change) + 'px';
         }
         ev.preventDefault();
     },
