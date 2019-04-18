@@ -91,10 +91,10 @@ let app = {
                 pages[i].style.left = leftBack[i];
             }
         } else {
-            pages[currentIndex].style.transition = 'all .3s';
+            pages[currentIndex].style.transition = 'all 1s';
             if (change > 0) {
                 //往右翻页
-                pages[currentIndex + 1].style.transition = 'all .3s';
+                pages[currentIndex + 1].style.transition = 'all 1s';
                 for (i = 0; i < pages.length; i++) {
                     //pages[i].style.left = (leftBack[i] / screen.width - 1) * 100 + '%';
                     pages[i].style.left = (parseInt(leftBack[i]) - 100) + '%';
@@ -102,7 +102,7 @@ let app = {
                 }
             } else {
                 //往左翻页
-                pages[currentIndex - 1].style.transition = 'all .3s';
+                pages[currentIndex - 1].style.transition = 'all 1s';
                 for (i = 0; i < pages.length; i++) {
                     pages[i].style.left = (leftBack[i] / screen.width + 1) * 100 + '%';
                     pages[i].style.left = (parseInt(leftBack[i]) + 100) + '%';
