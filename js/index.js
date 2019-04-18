@@ -91,17 +91,20 @@ let app = {
                 pages[i].style.left = leftBack[i];
             }
         } else {
-            pages[currentIndex].style.transition = 'all 0.1s';
+            pages[currentIndex].style.transition = 'all 0.2s';
+            pages[currentIndex].style.WebkitTransition = 'all 0.2s';
             if (change > 0) {
                 //往右翻页
-                pages[currentIndex + 1].style.transition = 'all 0.1s';
+                pages[currentIndex + 1].style.transition = 'all 0.2s';
+                pages[currentIndex + 1].style.WebkitTransition = 'all 0.2s';
                 for (i = 0; i < pages.length; i++) {
                     pages[i].style.left = (parseInt(leftBack[i]) - 100) + '%';
                     console.log('to right: pages' + i + "  " + pages[i].style.left);
                 }
             } else {
                 //往左翻页
-                pages[currentIndex - 1].style.transition = 'all 0.1s';
+                pages[currentIndex - 1].style.transition = 'all 0.2s';
+                pages[currentIndex - 1].style.WebkitTransition = 'all 0.2s';
                 for (i = 0; i < pages.length; i++) {
                     pages[i].style.left = (leftBack[i] / screen.width + 1) * 100 + '%';
                     pages[i].style.left = (parseInt(leftBack[i]) + 100) + '%';
