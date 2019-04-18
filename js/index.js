@@ -4,15 +4,14 @@ var leftBack = new Array();
 var startX;
 
 let app = {
-    //pages: null,
-    //startX: 0.0,
-
+    
     init: function() {
         console.log('in init');
         document.addEventListener('DOMContentLoaded', app.ready);
         //document.addEventListener('deviceready', app.ready);
         //document.querySelector('#music').play();
     },
+
     ready: function() {
         //document.querySelector('#audio-btn').addEventListener('click', app.changeClass(this, 'music'));
         document.querySelector('#audio-btn').addEventListener('click', app.changeClass);
@@ -35,6 +34,7 @@ let app = {
         //d.appendChild(au);
         //d.addEventListener('click', app.changeClass(this, 'music'));
     },
+///////////////////////////////////////////////
     handleTouchStart: function(ev) {
         console.log('in touchstart');
         var i;
@@ -46,23 +46,33 @@ let app = {
             }
         }
         for (i = 0; i < pages.length; i++) {
-            leftBack[i] = pages[i].offsetLeft;       //record origin Left value
+            if (pages[i].style.left)
+                leftBack[i] = pages[i].style.left;
+            else
+                leftBack[i] = pages[i].offsetLeft / screen.width + '00%';       //record origin Left value
         }
         console.log(leftBack);
     },
+/////////////////////////////////////////////
     handleTouchMove: function(ev) {
         console.log('in touchmove');
+        var scrWidth = screen.width;
         var touch = ev.touches[0];
         var change = startX - touch.clientX;
         //console.log(target.id);
         if ((change < 0 && currentIndex == 0) || (change > 0 && currentIndex == (pages.length - 1))) {
             return;
         }
+        if (change > 0) //往右翻页
+            pages[currentIndex + 1].style.display = 'block';
+        else    //往左翻页
+            pages[currentIndex - 1].style.display = 'block';
         for (var i = 0; i < pages.length; i++) {
-            pages[i].style.left = (leftBack[i] - change) + 'px';
+            pages[i].style.left = (parseInt(leftBack[i]) / 100) * scrWidth - change + 'px';
         }
         ev.preventDefault();
     },
+///////////////////////////////////////
     handleTouchEnd: function(ev) {
         console.log('in touchend');
         var i;
@@ -72,8 +82,13 @@ let app = {
         }
         var threshold = screen.width / 3;
         if (Math.abs(change) < threshold) {
+            if (change > 0) //撤回往右翻页
+                pages[currentIndex + 1].style.display = 'none';
+            else    //撤回往左翻页
+                pages[currentIndex - 1].style.display = 'none';
             for (i = 0; i < pages.length; i++) {
-                pages[i].style.left = (leftBack[i] / screen.width) * 100 + '%';
+                //pages[i].style.left = (leftBack[i] / screen.width) * 100 + '%';
+                pages[i].style.left = leftBack[i];
             }
         } else {
             pages[currentIndex].style.transition = 'all .3s';
@@ -81,7 +96,8 @@ let app = {
                 //往右翻页
                 pages[currentIndex + 1].style.transition = 'all .3s';
                 for (i = 0; i < pages.length; i++) {
-                    pages[i].style.left = (leftBack[i] / screen.width - 1) * 100 + '%';
+                    //pages[i].style.left = (leftBack[i] / screen.width - 1) * 100 + '%';
+                    pages[i].style.left = (parseInt(leftBack[i]) - 100) + '%';
                     console.log('to right: pages' + i + "  " + pages[i].style.left);
                 }
             } else {
@@ -89,12 +105,14 @@ let app = {
                 pages[currentIndex - 1].style.transition = 'all .3s';
                 for (i = 0; i < pages.length; i++) {
                     pages[i].style.left = (leftBack[i] / screen.width + 1) * 100 + '%';
-                    console.log('to right: pages' + i + "  " + pages[i].style.left);
-
+                    pages[i].style.left = (parseInt(leftBack[i]) + 100) + '%';
+                    console.log('to left: pages' + i + "  " + pages[i].style.left);
                 }
             }
+            console.log(pages[1].style.left);
         }
     },
+
     changeClass: function(ev) {
         //alert('here');
         var target = ev.currentTarget;

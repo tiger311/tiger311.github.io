@@ -10,7 +10,12 @@
 .parah {
 	/*margin: 0 auto;*/
 	height: 20px;	/*会影响圆形音乐按钮的位置*/
-    border: 1px solid #f000;
+	border: 1px solid #f000;
+	/* align center in the screen:
+	position: absolute;
+	top: 50%; left: 50%;
+	transform: translate(-50%, -50%);
+	*/
 }
 .in-parah {
 	text-align: center;
