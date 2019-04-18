@@ -63,10 +63,10 @@ let app = {
         if ((change < 0 && currentIndex == 0) || (change > 0 && currentIndex == (pages.length - 1))) {
             return;
         }
-        if (change > 0) //往右翻页
-            pages[currentIndex + 1].style.display = 'block';
-        else    //往左翻页
-            pages[currentIndex - 1].style.display = 'block';
+        //if (change > 0) //往右翻页
+        //    pages[currentIndex + 1].style.display = 'block';
+        //else    //往左翻页
+        //    pages[currentIndex - 1].style.display = 'block';
         for (var i = 0; i < pages.length; i++) {
             pages[i].style.left = (parseInt(leftBack[i]) / 100) * scrWidth - change + 'px';
         }
@@ -82,27 +82,26 @@ let app = {
         }
         var threshold = screen.width / 3;
         if (Math.abs(change) < threshold) {
-            if (change > 0) //撤回往右翻页
-                pages[currentIndex + 1].style.display = 'none';
-            else    //撤回往左翻页
-                pages[currentIndex - 1].style.display = 'none';
+            //if (change > 0) //撤回往右翻页
+            //    pages[currentIndex + 1].style.display = 'none';
+            //else    //撤回往左翻页
+            //    pages[currentIndex - 1].style.display = 'none';
             for (i = 0; i < pages.length; i++) {
                 //pages[i].style.left = (leftBack[i] / screen.width) * 100 + '%';
                 pages[i].style.left = leftBack[i];
             }
         } else {
-            pages[currentIndex].style.transition = 'all 1s';
+            pages[currentIndex].style.transition = 'all .3s';
             if (change > 0) {
                 //往右翻页
-                pages[currentIndex + 1].style.transition = 'all 1s';
+                pages[currentIndex + 1].style.transition = 'all .3s';
                 for (i = 0; i < pages.length; i++) {
-                    //pages[i].style.left = (leftBack[i] / screen.width - 1) * 100 + '%';
                     pages[i].style.left = (parseInt(leftBack[i]) - 100) + '%';
                     console.log('to right: pages' + i + "  " + pages[i].style.left);
                 }
             } else {
                 //往左翻页
-                pages[currentIndex - 1].style.transition = 'all 1s';
+                pages[currentIndex - 1].style.transition = 'all .3s';
                 for (i = 0; i < pages.length; i++) {
                     pages[i].style.left = (leftBack[i] / screen.width + 1) * 100 + '%';
                     pages[i].style.left = (parseInt(leftBack[i]) + 100) + '%';
