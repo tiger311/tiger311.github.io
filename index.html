@@ -9,39 +9,59 @@
     -->
     <link rel="shortcut icon" href="#" />   <!-- to solve the error "favicon.ico not found" -->
     <link rel="stylesheet" type="text/css" href="css/index.css">
-
+    
     <link rel="stylesheet" href="jquery/jquery.mobile-1.4.5.min.css">
-    <script src="jquery/jquery-1.11.1.min.js"></script>
+    <script src="jquery/jquery-1.11.1.min.js"></script> <!-- affect the background size of div 'page role' -->
     <script src="jquery/jquery.mobile-1.4.5.min.js"></script>
+
     <!--
+        <link rel="stylesheet" href="jquery/jquery.mobile-1.4.5.min.css">
+        <script src="jquery/jquery-1.11.1.min.js"></script>
+        <script src="jquery/jquery.mobile-1.4.5.min.js"></script>
+
         <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
         <script src="bootstrap/js/bootstrap.min.js"></script>
     -->
     
     <title>Company show</title>
 </head>
-<body>
+<body id="body-main">
     <!-- the first page -->
-    <div data-role="page" id="page1">
-        <div class="parah" >
-            <p class="in-parah">ok, web service online!</p>
-            <!--
-            <center>
-                <audio src="buzzsaw.mp3" controls="controls" autoplay="autoplay" loop="loop">
-                    Your browser does not support the audio element.
-                </audio>
-            </center>
-            -->
-        </div>
-        <div id="music-div">
+    <!--
+        <div data-role="page" id="page1">
+    -->
+    
+    <div id="div-container">
+        <div id="div-page1" class="page">
+            <div class="parah" >
+                <p class="in-parah">page 1</p>
+            </div>
+        </div>  <!-- page1 -->
+
+        <div id="div-page2" class="page">
+            <div class="parah" >
+                <p class="in-parah">page 2</p>
+            </div>
+        </div>  <!-- page2-->
+
+        <div id="div-page3" class="page">
+            <div class="parah" >
+                <p class="in-parah">page 3</p>
+            </div>
+        </div>  <!-- page3-->
+
+        <div id="div-page4" class="page">
+            <div class="parah" >
+                <p class="in-parah">page 4</p>
+            </div>
+        </div>  <!-- page4-->
+        
+        <div id="div-music">
             <div id="audio-btn" class="on">
                 <audio id="music" src="audio/buzzsaw.mp3" loop="loop" autoplay="autoplay"></audio>
-                <!--
-                    <audio id="music" src="audio/buzzsaw.mp3" loop="loop" autoplay="autoplay"></audio>
-                -->
             </div>
-        </div>
-    </div> <!-- page -->
+        </div>  
+    </div> 
     <!--
             <script src="js/jquery-1.11.1.min.js"></script>
             <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
