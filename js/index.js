@@ -36,6 +36,7 @@ let app = {
         //d.addEventListener('click', app.changeClass(this, 'music'));
     },
     handleTouchStart: function(ev) {
+        console.log('in touchstart');
         var i;
         startX = ev.touches[0].clientX;
         for (i = 0; i < pages.length; i++) {
@@ -50,6 +51,7 @@ let app = {
         console.log(leftBack);
     },
     handleTouchMove: function(ev) {
+        console.log('in touchmove');
         var touch = ev.touches[0];
         var change = startX - touch.clientX;
         //console.log(target.id);
@@ -57,12 +59,12 @@ let app = {
             return;
         }
         for (var i = 0; i < pages.length; i++) {
-            pages[i].style.left = pages[i].offsetLeft + change + 'px';
+            pages[i].style.left = leftBack[i] - change + 'px';
         }
         ev.preventDefault();
     },
     handleTouchEnd: function(ev) {
-        //console.log('screen width =' + screen.width);
+        console.log('in touchend');
         var i;
         var change = startX - ev.changedTouches[0].clientX;
         if ((change < 0 && currentIndex == 0) || (change > 0 && currentIndex == (pages.length - 1))) {
