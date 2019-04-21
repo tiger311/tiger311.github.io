@@ -27,7 +27,7 @@ let app = {
     //document.getElementById('div-page1').addEventListener('onload', app.page1Loaded); //div has no onload event!
     //app.addBackgroundInPage1('../image/astronaut4-1-10801920.jpg');   // ensure that run after all the background loaded!
     //window.onload = app.slideStart; 
-    app.page1Loaded();
+    app.page1Loaded();  //确保背景图load完才 slideStart()
     console.log("in ready");
     //var d = document.querySelector('#audio-btn');
     //var au = document.createElement('audio');
@@ -43,18 +43,13 @@ let app = {
   page1Loaded: function () {
     console.log('page1 loaded!');
     //var bg = document.querySelectorAll('#div-page1').style.background;
-    var src = $('#div-page1').css('background');
+    var bg = $('#div-page1').css('background');
     //console.log(bg);
-    //var url = src.replace(/url\((.+?)\)/, '$1');
-    var pattern = /".*?"/g;
-    var url = pattern.exec(src);
-    console.log(url[0]);
-    url = '..' + url[0].match(/\/image\/.*/)[0].replace(/\"/, '');
+    //var pattern = /".*?"/g;
+    //var url = pattern.exec(bg);
+    var url =bg.match(/".*?"/g)[0]; //取出""内字符串
+    url = '..' + url.match(/\/image\/.*/)[0].replace(/\"/, ''); //取出"/image/..."并删除结尾处的"
     console.log('url: ' + url);
-    //while(url = pattern.exec(src)) console.log(url);
-    //src = src.split('(')[1].split(')')[0];
-    //console.log(url);
-    
     var img = new Image();
     img.onload = function() {
       console.log('img loaded.');
@@ -71,11 +66,6 @@ let app = {
     page1.style.background = 'url(' + url + ')';
     page1.style.backgroundSize = 'cover';
     img.onload = function () {
-      //console.log('background in page1 loaded!');
-      //var page1 = document.getElementById('div-page1');
-      //page1.style.background = 'url(' + url + ')';
-      //page1.style.backgroundSize = 'cover';
-      //page1.style.backgroundSize = '100% 100%';
       app.slideStart();
     }
   },
