@@ -24,7 +24,8 @@ let app = {
       pages[i].addEventListener("touchmove", app.handleTouchMove);
       pages[i].addEventListener("touchend", app.handleTouchEnd);
     }
-    window.onload = app.slideStart; // ensure that run after all the elements loaded!
+    app.addBackgroundInPage1('../image/astronaut4-1-10801920.jpg');
+    //window.onload = app.slideStart; // ensure that run after all the elements loaded!
     console.log("in ready");
     //var d = document.querySelector('#audio-btn');
     //var au = document.createElement('audio');
@@ -36,6 +37,19 @@ let app = {
     //au.load();
     //d.appendChild(au);
     //d.addEventListener('click', app.changeClass(this, 'music'));
+  },
+  addBackgroundInPage1: function(url) {
+    //console.log('in addBackgroundInPage1');
+    var img = new Image();
+    img.src = url;
+    img.onload = function () {
+      //console.log('background in page1 loaded!');
+      var page1 = document.getElementById('div-page1');
+      page1.style.background = 'url(' + url + ')';
+      page1.style.backgroundSize = 'cover';
+      //page1.style.backgroundSize = '100% 100%';
+      app.slideStart();
+    }
   },
   slideStart: function(ev) {
     console.log('in slideStart');
@@ -140,11 +154,8 @@ let app = {
   },
 
   changeClass: function(ev) {
-    //alert('here');
     var target = ev.currentTarget;
     var className = $(target).attr("class");
-    //var player = document.getElementById(id);
-
     console.log("in changeclass");
     console.log(target);
     console.log(ev);
