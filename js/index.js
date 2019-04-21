@@ -24,8 +24,10 @@ let app = {
       pages[i].addEventListener("touchmove", app.handleTouchMove);
       pages[i].addEventListener("touchend", app.handleTouchEnd);
     }
-    app.addBackgroundInPage1('../image/astronaut4-1-10801920.jpg');
-    //window.onload = app.slideStart; // ensure that run after all the elements loaded!
+    //document.getElementById('div-page1').addEventListener('onload', app.page1Loaded); //div has no onload event!
+    //app.addBackgroundInPage1('../image/astronaut4-1-10801920.jpg');   // ensure that run after all the background loaded!
+    //window.onload = app.slideStart; 
+    app.page1Loaded();
     console.log("in ready");
     //var d = document.querySelector('#audio-btn');
     //var au = document.createElement('audio');
@@ -38,15 +40,41 @@ let app = {
     //d.appendChild(au);
     //d.addEventListener('click', app.changeClass(this, 'music'));
   },
+  page1Loaded: function () {
+    console.log('page1 loaded!');
+    //var bg = document.querySelectorAll('#div-page1').style.background;
+    var src = $('#div-page1').css('background');
+    //console.log(bg);
+    //var url = src.replace(/url\((.+?)\)/, '$1');
+    var pattern = /".*?"/g;
+    var url = pattern.exec(src);
+    console.log(url[0]);
+    url = '..' + url[0].match(/\/image\/.*/)[0].replace(/\"/, '');
+    console.log('url: ' + url);
+    //while(url = pattern.exec(src)) console.log(url);
+    //src = src.split('(')[1].split(')')[0];
+    //console.log(url);
+    
+    var img = new Image();
+    img.onload = function() {
+      console.log('img loaded.');
+      app.slideStart();
+    }
+    img.src = url;
+    if (img.complete) img.onload();
+  },
   addBackgroundInPage1: function(url) {
     //console.log('in addBackgroundInPage1');
     var img = new Image();
     img.src = url;
+    var page1 = document.getElementById('div-page1');
+    page1.style.background = 'url(' + url + ')';
+    page1.style.backgroundSize = 'cover';
     img.onload = function () {
       //console.log('background in page1 loaded!');
-      var page1 = document.getElementById('div-page1');
-      page1.style.background = 'url(' + url + ')';
-      page1.style.backgroundSize = 'cover';
+      //var page1 = document.getElementById('div-page1');
+      //page1.style.background = 'url(' + url + ')';
+      //page1.style.backgroundSize = 'cover';
       //page1.style.backgroundSize = '100% 100%';
       app.slideStart();
     }
