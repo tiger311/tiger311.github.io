@@ -18,7 +18,7 @@ let app = {
       .addEventListener("click", app.changeClass);
     document.querySelector('#div-page1 .slide-wrapper').addEventListener('click', app.slideStart);
     pages = document.querySelectorAll("div .page");
-    //console.log(pages);
+    console.log(pages);
     for (var i = 0; i < pages.length; i++) {
       pages[i].addEventListener("touchstart", app.handleTouchStart);
       pages[i].addEventListener("touchmove", app.handleTouchMove);
@@ -44,18 +44,17 @@ let app = {
   },
   slideStart: function(ev) {
     console.log('in slideStart');
-    var p = document.getElementById('p-slide');
-    p.className += ' fade-in';
-    //p.toggleClass('fade-in');
+    //var p = document.getElementById('p-slide');
+    //p.className += ' fade-in';
+    //p.style.top = '10px';
     //window.setTimeout( function() {
     //  p.className += ' fade-in';
     //}, 100);
-    console.log(p);
-    console.log(p.className);
+    //console.log(p);
     var p1 = document.querySelectorAll('#p-slide');
-    console.log(p1);
+    p1[0].style.top = '0';
+    console.log(p1[0]);
     console.log(p1[0].style.top);
-    console.log(p1[0].style.left);
     //p.style.transition = 'all 10s';
     //p.style.WebkitTransition = 'all 10s';
     //p.style.top = '0';
