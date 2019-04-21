@@ -16,7 +16,7 @@ let app = {
     document
       .querySelector("#audio-btn")
       .addEventListener("click", app.changeClass);
-    document.querySelector('#div-page1 .slide-wrapper').addEventListener('click', app.slideStart);
+    //document.querySelector('#div-page1 .slide-wrapper').addEventListener('click', app.slideStart);
     pages = document.querySelectorAll("div .page");
     console.log(pages);
     for (var i = 0; i < pages.length; i++) {
@@ -24,6 +24,8 @@ let app = {
       pages[i].addEventListener("touchmove", app.handleTouchMove);
       pages[i].addEventListener("touchend", app.handleTouchEnd);
     }
+    var p1 = document.querySelectorAll('#p-slide');
+    p1[0].style.top = '0';
     //var p = document.querySelector('#p-slide');
     //p.style.transition = 'all 10s';
     //p.style.WebkitTransition = 'top 10s';
