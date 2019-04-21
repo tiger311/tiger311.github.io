@@ -24,15 +24,7 @@ let app = {
       pages[i].addEventListener("touchmove", app.handleTouchMove);
       pages[i].addEventListener("touchend", app.handleTouchEnd);
     }
-    //var p1 = document.querySelectorAll('#p-slide');
-    //p1[0].style.top = '0';
-    window.onload = app.slideStart;
-    //var p = document.querySelector('#p-slide');
-    //p.style.transition = 'all 10s';
-    //p.style.WebkitTransition = 'top 10s';
-    //p.style.top = '0';
-
-    //p.style.display = 'block';
+    window.onload = app.slideStart; // ensure that run after all the elements loaded!
     console.log("in ready");
     //var d = document.querySelector('#audio-btn');
     //var au = document.createElement('audio');
