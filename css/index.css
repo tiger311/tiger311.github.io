@@ -156,14 +156,11 @@
   /*display: block;*/
 }
 #div-page2 .mars {
-  width: 300px;
-  height: 300px;
+  width: 300px; height: 300px;
   position: absolute;
   /* position: fixed; */
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  top: 0; bottom: 0;
+  left: 0; right: 0;
   margin: auto;
   overflow: hidden;
   border-radius: 50%;
@@ -184,7 +181,7 @@
 #div-page2 .mars > div {
   width: 200%;
   height: 100%;
-  animation: spin 30s linear alternate infinite;
+  animation: spin 20s linear alternate infinite;
   background: url(../image/mars2-1000500.jpg);
   background-size: cover;
 }
