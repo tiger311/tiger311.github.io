@@ -156,10 +156,10 @@
   /*display: block;*/
 }
 #div-page2 .mars {
-  width: 300px; height: 300px;
+  width: 250px; height: 250px;
   position: absolute;
   /* position: fixed; */
-  top: 0; bottom: 0;
+  top: 0; bottom: 40%;
   left: 0; right: 0;
   margin: auto;
   overflow: hidden;
@@ -179,14 +179,36 @@
 }
 
 #div-page2 .mars > div {
-  width: 200%;
+  width: 100%;
   height: 100%;
-  animation: spin 20s linear alternate infinite;
+  animation: spin 10s linear infinite;
+  /* animation: spin 15s linear alternate infinite; */
   background: url(../image/mars2-1000500.jpg);
   background-size: cover;
 }
 @keyframes spin {
-  to {
+  /*to {
     transform: translateX(-50%);
+  }*/
+  0% {
+    background-position: 0 0;
   }
+  100% {
+    background-position: 318 0;
+  }
+}
+#div-page2 .commander {
+  position: absolute;
+  width: 200px; height: 250px;
+  top: 55%; left: 50%;
+  transform: translate(-50%, 0);
+  /* background: #e46363; */
+}
+#div-page2 .commander > div {
+  width: 100px; height: 125px;
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translate(-50%, 0);
+  background: url(../image/commander01_cr.jpg);
+  background-size: cover;
 }
