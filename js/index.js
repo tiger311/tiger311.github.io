@@ -47,7 +47,7 @@ let app = {
     //console.log(bg);
     //var pattern = /".*?"/g;
     //var url = pattern.exec(bg);
-    var url =bg.match(/".*?"/g)[0]; //取出""内字符串
+    var url = bg.match(/".*?"/g)[0]; //取出""内字符串
     url = '..' + url.match(/\/image\/.*/)[0].replace(/\"/, ''); //取出"/image/..."并删除结尾处的"
     console.log('url: ' + url);
     var img = new Image();
