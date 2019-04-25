@@ -159,7 +159,7 @@
   width: 250px; height: 250px;
   position: absolute;
   /* position: fixed; */
-  top: 0; bottom: 40%;
+  top: 0; bottom: 35%;
   left: 0; right: 0;
   margin: auto;
   overflow: hidden;
@@ -183,7 +183,7 @@
   height: 100%;
   animation: spin 10s linear infinite;
   /* animation: spin 15s linear alternate infinite; */
-  background: url(../image/mars2-1000500.jpg);
+  background: url(../image/earth1-640256.jpg);
   background-size: cover;
 }
 @keyframes spin {
@@ -199,8 +199,8 @@
 }
 #div-page2 .commander {
   position: absolute;
-  width: 200px; height: 250px;
-  top: 55%; left: 50%;
+  width: 100vw; height: 250px;
+  top: 60%; left: 50%;
   transform: translate(-50%, 0);
   /* background: #e46363; */
 }
