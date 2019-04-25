@@ -16,7 +16,9 @@ let app = {
     document
       .querySelector("#audio-btn")
       .addEventListener("click", app.changeClass);
-    //document.querySelector('#div-page1 .slide-wrapper').addEventListener('click', app.slideStart);
+    document.querySelector('.editBtn').addEventListener('click', app.enableEditing);
+    //document.querySelector('#div-page2 .slide').addEventListener('mousedown', app.page2SlideCommander);
+
     pages = document.querySelectorAll("div .page");
     console.log(pages);
     for (var i = 0; i < pages.length; i++) {
@@ -39,6 +41,13 @@ let app = {
     //au.load();
     //d.appendChild(au);
     //d.addEventListener('click', app.changeClass(this, 'music'));
+  },
+  enableEditing: function() {
+    console.log('in enableEditing');
+    var p = document.querySelector('#div-page2 .slide');
+    p.addEventListener('mousedown', app.page2SlideCommander);
+    // p.style.boxShadow = '5px 5px 5px #ffa500'; 
+    p.style.border = '5px dotted #ffa500';
   },
   page1Loaded: function () {
     console.log('page1 loaded!');
@@ -188,9 +197,12 @@ let app = {
     var au = target.children[0];
     console.log(au);
     className == "on" ? au.pause() : au.play();
-  }
+  },
   //play: function() {
   //    document.getElementById('music').play();
   //}
+  page2SlideCommander: function () {
+    console.log('in page2SlideCommander');
+  }
 };
 app.init();

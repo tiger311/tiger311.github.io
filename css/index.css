@@ -213,7 +213,7 @@ body {
 }
 #div-page2 .commander .slide {
   width: 144px; height: 100%;
-  /* position: absolute; */
+  position: relative;
   /* top: 0; left: 20px; */
   margin-left: 10px;
   float: left;
@@ -223,7 +223,7 @@ body {
 }
 #div-page2 .commander .detail {
   /* display: block; */
-  width: 190px; height: 100%;
+  width: 180px; height: 100%;
   float: left;
   margin-left: 10px;
   text-align: center;
