@@ -55,7 +55,8 @@ let app = {
           divs[i].addEventListener('touchstart', app.commanderTouchStart);
           divs[i].addEventListener('touchmove', app.commanderTouchMove);
           divs[i].addEventListener('touchend', app.commanderTouchEnd);
-          divs[i].children[0].style.border = '2px solid yellow';
+          //divs[i].children[0].style.border = '2px solid yellow';
+          divs[i].style.border = '2px solid yellow';
         }
     },
     /////////// page1Loaded() 作用是在page1背景图load完毕之后才启动文本滑动进入
