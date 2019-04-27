@@ -159,7 +159,8 @@ body {
   /*display: block;*/
 }
 #div-page2 .mars {
-  width: 250px; height: 250px;
+  /* width: 250px; height: 250px; */
+  width: 70vmin; height: 70vmin;
   position: absolute;
   /* position: fixed; */
   top: 0; bottom: 35%;
@@ -200,7 +201,7 @@ body {
 #div-page2 .commander-wrapper {
   /* border: 2px solid yellow; */
   position: relative;
-  width: 100vw; height: 180px;
+  width: 100vw; height: 28.125vh;
   top: 60%; left: 50%;
   transform: translate(-50%, 0);
   overflow: hidden;
@@ -217,9 +218,9 @@ body {
   display: inline;
 }
 #div-page2 .commander .slide {
-  width: 144px; height: 100%;
+  /* width: 144px; height: 100%; */
+  width: 40%; height: 100%;
   position: relative;
-  /* top: 0; left: 20px; */
   margin-left: 10px;
   float: left;
   /* transform: translate(-50%, 0); */
@@ -227,8 +228,8 @@ body {
   background-size: cover;
 }
 #div-page2 .commander .detail {
-  /* display: block; */
-  width: 180px; height: 100%;
+  /* width: 180px; height: 100%; */
+  width: 50%; height: 100%;
   float: left;
   margin-left: 10px;
   text-align: center;
@@ -244,11 +245,12 @@ body {
   top: 0;
 }
 #div-page2 #commander2 {
-  top: -180px;
+  /* top: -180px; */
+  top: -100%
 }
 #div-page2 #commander3 {
-  top: -360px;
+  top: -200%;
 }
 #div-page2 #commander4 {
-  top: -540px;
+  top: -300%;
 }

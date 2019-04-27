@@ -218,12 +218,13 @@ let app = {
     ////////////////////////////////////////////////////
     commanderTouchStart: function(ev) {
         console.log('in commanderTouchStart');
+        console.log('screen width: ' + screen.width + ' screen height: ' + screen.height);
+        console.log('inner width: ' + innerWidth + ' inner height: ' + innerHeight);
+        console.log('outer width: ' + outerWidth + ' outer height: ' + outerHeight);
         divHeight = divs[0].offsetHeight;
-        //var i;
         //console.log(ev.touches[0]);
         startY = ev.touches[0].clientY;
-        //console.log(startY);
-        for (i = 0; i < divs.length; i++) {
+        for (var i = 0; i < divs.length; i++) {
             if (divs[i].style.top) 
                 topBack[i] = parseInt(divs[i].style.top);
             else 
@@ -268,9 +269,6 @@ let app = {
         //         divs[i].style.top = topBack[i] + change;
         //     }
         // } 
-        
-        //ev.preventDefault();
-        //return false;
         ev.stopPropagation();
     },
     //////////////////////////////////////////////
