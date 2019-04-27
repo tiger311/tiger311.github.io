@@ -214,6 +214,8 @@ let app = {
     //    document.getElementById('music').play();
     //}
     /////////////////////////////////////////////////////
+    //divs: null, startY: 0, currComIndex: 0, divHeight: 0, topBack: new Array(),
+    ////////////////////////////////////////////////////
     commanderTouchStart: function(ev) {
         console.log('in commanderTouchStart');
         divHeight = divs[0].offsetHeight;
@@ -222,8 +224,10 @@ let app = {
         startY = ev.touches[0].clientY;
         //console.log(startY);
         for (i = 0; i < divs.length; i++) {
-            if (divs[i].style.top) topBack[i] = parseInt(divs[i].style.top);
-            else topBack[i] = divs[i].offsetTop; //record origin Left value
+            if (divs[i].style.top) 
+                topBack[i] = parseInt(divs[i].style.top);
+            else 
+                topBack[i] = divs[i].offsetTop; //record origin Left value
             if (ev.currentTarget.id == divs[i].id) {
                 currComIndex = i;
             }
@@ -238,17 +242,33 @@ let app = {
         console.log('in commanderTouchmove');
         var touch = ev.touches[0];
         var change = touch.clientY - startY;
+        console.log((change < 0 && currComIndex == 0) ||
+            (change > 0 && currComIndex == divs.length - 1));
         if (    // (change < 0) scroll up, (change > 0) scroll down
             (change < 0 && currComIndex == 0) ||
             (change > 0 && currComIndex == divs.length - 1)
         ) {
+            console.log(change);
             ev.stopPropagation();
             return;
-        }
+        } 
+        console.log('here!');
         for (var i = 0; i < divs.length; i++) {
             //divs[i].style.top = topBack[i] + change + 'px';
             divs[i].style.top = topBack[i] + change;
         }
+        
+        // if (    // (change < 0) scroll up, (change > 0) scroll down
+        //     !((change < 0 && currComIndex == 0) ||
+        //     (change > 0 && currComIndex == (divs.length - 1)))
+        // ) {
+        //     console.log('here!');
+        //     for (var i = 0; i < divs.length; i++) {
+        //         //divs[i].style.top = topBack[i] + change + 'px';
+        //         divs[i].style.top = topBack[i] + change;
+        //     }
+        // } 
+        
         //ev.preventDefault();
         //return false;
         ev.stopPropagation();
