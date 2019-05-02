@@ -47,8 +47,11 @@ let app = {
         //d.appendChild(au);
         //d.addEventListener('click', app.changeClass(this, 'music'));
     },
-    enableEditing: function() {
+    enableEditing: function(ev) {
         console.log('in enableEditing');
+        ev.currentTarget.style.zIndex= -1;
+        btns = document.querySelector('.save-cancel').style.zIndex = 0;
+        //editBtn = document.querySelector('editBtn')
         divs = document.querySelectorAll('#div-page2 .commander');
         console.log(divs);
         for (var i = 0; i < divs.length; i++) {
