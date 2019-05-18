@@ -15,22 +15,23 @@ let app = {
     },
 
     ready: function() {
-        //document.querySelector('#audio-btn').addEventListener('click', app.changeClass(this, 'music'));
         document
             .querySelector('#audio-btn')
             .addEventListener('click', app.changeClass);
         document
             .querySelector('.editBtn')
             .addEventListener('click', app.enableEditing);
-        //document.querySelector('#div-page2 .slide').addEventListener('mousedown', app.page2SlideCommander);
 
         pages = document.querySelectorAll('div .page');
-        console.log(pages);
+        //console.log(pages);
         for (var i = 0; i < pages.length; i++) {
             pages[i].addEventListener('touchstart', app.handleTouchStart);
             pages[i].addEventListener('touchmove', app.handleTouchMove);
             pages[i].addEventListener('touchend', app.handleTouchEnd);
         }
+        document
+            .querySelector('#saveBtn')
+            .addEventListener('click', app.savePage);
         //document.getElementById('div-page1').addEventListener('onload', app.page1Loaded); //div has no onload event!
         //app.addBackgroundInPage1('../image/astronaut4-1-10801920.jpg');   // ensure that run after all the background loaded!
         //window.onload = app.slideStart;
@@ -47,21 +48,116 @@ let app = {
         //d.appendChild(au);
         //d.addEventListener('click', app.changeClass(this, 'music'));
     },
+    ////////////////////////////////////
     enableEditing: function(ev) {
         console.log('in enableEditing');
-        ev.currentTarget.style.zIndex= -1;
+        ev.currentTarget.style.zIndex = -1;
         btns = document.querySelector('.save-cancel').style.zIndex = 0;
         //editBtn = document.querySelector('editBtn')
         divs = document.querySelectorAll('#div-page2 .commander');
         console.log(divs);
         for (var i = 0; i < divs.length; i++) {
-          divs[i].addEventListener('touchstart', app.commanderTouchStart);
-          divs[i].addEventListener('touchmove', app.commanderTouchMove);
-          divs[i].addEventListener('touchend', app.commanderTouchEnd);
-          //divs[i].children[0].style.border = '2px solid yellow';
-          divs[i].style.border = '2px solid yellow';
+            divs[i].addEventListener('touchstart', app.commanderTouchStart);
+            divs[i].addEventListener('touchmove', app.commanderTouchMove);
+            divs[i].addEventListener('touchend', app.commanderTouchEnd);
+            //divs[i].children[0].style.border = '2px solid yellow';
+            divs[i].style.border = '2px solid yellow';
         }
     },
+    //////////////////////////////////////
+    savePage: function(ev) {
+        console.log('in savePage.');
+        var serialized = document.documentElement.outerHTML;
+        var user = 'u1';
+        var file = new File([serialized], 'index-' + user + '.html', {type: 'text/html'});
+        //console.log('file name and type: ' + file.name + '  ' + file.type);
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', `https://brainstar.herokuapp.com/sign-s3?file-name=${file.name}&file-type=${file.type}`);
+        //xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
+        //xhr.open('GET', '/sign-s3?user=' + user);
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    const response = JSON.parse(xhr.responseText);
+                    app.uploadFile(file, response.signedRequest, response.url);
+                } else {
+                    alert('Could not get signed URL.');
+                }
+            }
+        };
+        xhr.send();
+    },
+    //////////////////////////////////////////
+    uploadFile: function(file, signedRequest, url) {
+        console.log('in uploadFile.');
+        const xhr = new XMLHttpRequest();
+        console.log(signedRequest);
+        xhr.open('PUT', signedRequest);
+        //xhr.setRequestHeader('Content-Type', 'binary');
+        //xhr.setRequestHeader('x-amz-acl', 'public-read');
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    //document.getElementById('preview').src = url;
+                    //document.getElementById('avatar-url').value = url;
+                    console.log('xhr status == 200');
+                } else {
+                    alert('Could not upload file.');
+                }
+            }
+        };
+        xhr.send(file);
+    },
+
+    // savePage: function(ev) {
+    //     console.log('in savePage');
+    //     const uri = 'https://brainstar.herokuapp.com/savepage';
+
+    //     // new Request(uri);
+    //     // new Request(uri, options);
+    //     //options - method, headers, body, mode
+    //     //methods: GET, POST, PUT, DELETE, OPTIONS
+
+    //     //new Headers();
+    //     //headers.append(name, value);
+    //     //Content-Type, Content-Length, Accept, Accept-Language,
+    //     var serialized = document.documentElement.outerHTML;
+    //     console.log(serialized);
+    //     var h = new Headers();
+    //     //h.append('Content-Type', 'application/x-www-form-urlencoded');
+    //     h.append('Cache-Control', 'no-cache');
+    //     var formData = new FormData();
+    //     formData.append('username', 'u1');
+    //     formData.append('userpage', serialized);
+    //     var req = new Request(uri, {
+    //         method: 'POST',
+    //         headers: h,
+    //         mode: 'no-cors',
+    //         body: formData
+    //     });
+
+    //     fetch(req)
+    //         .then(response => {
+    //             if (response.ok) {
+    //                 console.log('save page ok.');
+    //             } else {
+    //                 throw new Error('bad http stuff!');
+    //             }
+    //         })
+    //         // .then(response => {
+    //         //     if (response.ok) {
+    //         //         return response.json();
+    //         //     } else {
+    //         //         throw new Error('bad http stuff!');
+    //         //     }
+    //         // })
+    //         // .then(jsonData => {
+    //         //     console.log(jsonData);
+    //         // })
+    //         .catch(err => {
+    //             console.log('error: ', err.message);
+    //         });
+    // },
     /////////// page1Loaded() 作用是在page1背景图load完毕之后才启动文本滑动进入
     page1Loaded: function() {
         console.log('page1 loaded!');
@@ -104,10 +200,6 @@ let app = {
         p1[0].style.top = '0';
         console.log(p1[0]);
         console.log(p1[0].style.top);
-        //p.style.transition = 'all 10s';
-        //p.style.WebkitTransition = 'all 10s';
-        //p.style.top = '0';
-        //p.style.display = 'block';
     },
     ///////////////////////////////////////////////
     handleTouchStart: function(ev) {
@@ -221,17 +313,21 @@ let app = {
     ////////////////////////////////////////////////////
     commanderTouchStart: function(ev) {
         console.log('in commanderTouchStart');
-        console.log('screen width: ' + screen.width + ' screen height: ' + screen.height);
-        console.log('inner width: ' + innerWidth + ' inner height: ' + innerHeight);
-        console.log('outer width: ' + outerWidth + ' outer height: ' + outerHeight);
+        console.log(
+            'screen width: ' + screen.width + ' screen height: ' + screen.height
+        );
+        console.log(
+            'inner width: ' + innerWidth + ' inner height: ' + innerHeight
+        );
+        console.log(
+            'outer width: ' + outerWidth + ' outer height: ' + outerHeight
+        );
         divHeight = divs[0].offsetHeight;
         //console.log(ev.touches[0]);
         startY = ev.touches[0].clientY;
         for (var i = 0; i < divs.length; i++) {
-            if (divs[i].style.top) 
-                topBack[i] = parseInt(divs[i].style.top);
-            else 
-                topBack[i] = divs[i].offsetTop; //record origin Left value
+            if (divs[i].style.top) topBack[i] = parseInt(divs[i].style.top);
+            else topBack[i] = divs[i].offsetTop; //record origin Left value
             if (ev.currentTarget.id == divs[i].id) {
                 currComIndex = i;
             }
@@ -246,22 +342,25 @@ let app = {
         console.log('in commanderTouchmove');
         var touch = ev.touches[0];
         var change = touch.clientY - startY;
-        console.log((change < 0 && currComIndex == 0) ||
-            (change > 0 && currComIndex == divs.length - 1));
-        if (    // (change < 0) scroll up, (change > 0) scroll down
+        console.log(
+            (change < 0 && currComIndex == 0) ||
+                (change > 0 && currComIndex == divs.length - 1)
+        );
+        if (
+            // (change < 0) scroll up, (change > 0) scroll down
             (change < 0 && currComIndex == 0) ||
             (change > 0 && currComIndex == divs.length - 1)
         ) {
             console.log(change);
             ev.stopPropagation();
             return;
-        } 
+        }
         console.log('here!');
         for (var i = 0; i < divs.length; i++) {
             //divs[i].style.top = topBack[i] + change + 'px';
             divs[i].style.top = topBack[i] + change;
         }
-        
+
         // if (    // (change < 0) scroll up, (change > 0) scroll down
         //     !((change < 0 && currComIndex == 0) ||
         //     (change > 0 && currComIndex == (divs.length - 1)))
@@ -271,7 +370,7 @@ let app = {
         //         //divs[i].style.top = topBack[i] + change + 'px';
         //         divs[i].style.top = topBack[i] + change;
         //     }
-        // } 
+        // }
         ev.stopPropagation();
     },
     //////////////////////////////////////////////
@@ -316,6 +415,6 @@ let app = {
             }
         }
         ev.stopPropagation();
-    }
+    },
 };
 app.init();

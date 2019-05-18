@@ -9,7 +9,7 @@
     -->
         <link rel="shortcut icon" href="#" />
         <!-- to solve the error "favicon.ico not found" -->
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <!-- <link rel="stylesheet" type="text/css" href="css/index.css" /> -->
 
         <link rel="stylesheet" href="jquery/jquery.mobile-1.4.5.min.css" />
         <script src="jquery/jquery-1.11.1.min.js"></script>
@@ -26,7 +26,289 @@
     -->
 
         <title>Company show</title>
+
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                height: 100vh;
+            }
+            #div-container {
+                /* border: solid 5px #f999; */
+                width: 100%;
+                height: 100%;
+                position: relative;
+            }
+            
+            #div-container .editBtn {
+                position: absolute;
+                width: 100px;
+                height: 40px;
+                background: green;
+                color: #fff;
+                text-align: center;
+                border-radius: 5px;
+                /* line-height: 30px; */
+                top: 20px;
+                left: 50%;
+                transform: translate(-50%, 0);
+            }
+            #div-container .save-cancel {
+                position: absolute;
+                /* width: 200px; height: 40px; */
+                background: rgba(red, green, blue);
+                /* opacity: 0; */
+                text-align: center;
+                top: 20px;
+                left: 50%;
+                transform: translate(-50%, 0);
+                z-index: -1;
+
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+            }
+            #div-container .btn {
+                border-radius: 50%;
+                background: #e0e0e0;
+            }
+            #div-page1 {
+                width: 100vw;
+                height: 100vh;
+                background: url('../image/astronaut4-1-10801920.jpg') center
+                    no-repeat;
+                background-size: 100% 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+            #div-page2 {
+                width: 100vw;
+                height: 100vh;
+                background: #000000;
+
+                position: relative;
+                top: 0;
+                left: 100%;
+            }
+            #div-page3 {
+                width: 100vw;
+                height: 100vh;
+                /*border: 2px solid #000;*/
+                background: #e46363;
+
+                position: absolute;
+                top: 0;
+                left: 200%;
+            }
+            #div-page4 {
+                width: 100vw;
+                height: 100vh;
+                background: #66b2ff;
+
+                position: absolute;
+                top: 0;
+                left: 300%;
+            }
+
+            #div-music {
+                width: 40px;
+                height: 40px;
+                /*margin: 10px 10% auto auto;*/
+                border-radius: 50%;
+
+                position: absolute; /*和 top right 配合*/
+                top: 20px;
+                right: 20px;
+                z-index: 99;
+            }
+            #div-music #audio-btn {
+                width: 44px; height: 44px;
+                /*margin:100px auto;*/
+                background-size: 100% 100%;
+            }
+            #div-music .on {
+                background: url('../image/music-64.png') no-repeat 0 0;
+                -webkit-animation: rotating 1.2s linear infinite;
+                animation: rotating 1.2s linear infinite;
+            }
+            #div-music .off {
+                background: url('../image/music-64.png') no-repeat 0 0;
+            }
+            @-webkit-keyframes rotating {
+                from {
+                    -webkit-transform: rotate(0deg);
+                    -moz-transform: rotate(0deg);
+                    -ms-transform: rotate(0deg);
+                    -o-transform: rotate(0deg);
+                    transform: rotate(0deg);
+                }
+                to {
+                    -webkit-transform: rotate(360deg);
+                    -moz-transform: rotate(360deg);
+                    -ms-transform: rotate(360deg);
+                    -o-transform: rotate(360deg);
+                    transform: rotate(360deg);
+                }
+            }
+            @keyframes rotating {
+                from {
+                    -webkit-transform: rotate(0deg);
+                    -moz-transform: rotate(0deg);
+                    -ms-transform: rotate(0deg);
+                    -o-transform: rotate(0deg);
+                    transform: rotate(0deg);
+                }
+                to {
+                    -webkit-transform: rotate(360deg);
+                    -moz-transform: rotate(360deg);
+                    -ms-transform: rotate(360deg);
+                    -o-transform: rotate(360deg);
+                    transform: rotate(360deg);
+                }
+            }
+            #div-page1 .slide-wrapper {
+                width: 55vw;
+                height: 50vh;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, 0);
+                /*
+  display: flex;
+  align-items: center;
+  text-align: center;
+  */
+                background-color: rgba(0, 0, 0, 0.3);
+            }
+            #div-page1 .fadeable {
+                position: relative;
+                /*display: none;*/
+                text-indent: 20px;
+                font-size: 14px;
+                top: 100%;
+                transition: top 6s linear;
+                -webkit-transition: top 6s linear;
+                -moz-transition: top 6s linear;
+                -ms-transition: top 6s linear;
+                -o-transition: top 6s linear;
+                /*
+  transition: all 3s linear;
+  -webkit-transition: all 3s linear;
+  -moz-transition: all 3s linear;
+  */
+            }
+            .fade-in {
+                top: 10px;
+                /*display: block;*/
+            }
+            #div-page2 .mars {
+                /* width: 250px; height: 250px; */
+                width: 70vmin;
+                height: 70vmin;
+                position: absolute;
+                /* position: fixed; */
+                top: 0;
+                bottom: 35%;
+                left: 0;
+                right: 0;
+                margin: auto;
+                overflow: hidden;
+                border-radius: 50%;
+                box-shadow: 0 0 20px 20px #000 inset, 0 0 20px 2px #000;
+            }
+
+            #div-page2 .mars:after {
+                position: absolute;
+                content: '';
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                box-shadow: -20px -20px 50px 2px #000 inset;
+                border-radius: 50%;
+            }
+
+            #div-page2 .mars > div {
+                width: 100%;
+                height: 100%;
+                animation: spin 10s linear infinite;
+                /* animation: spin 15s linear alternate infinite; */
+                background: url(../image/mars2-1000500.jpg);
+                background-size: cover;
+            }
+            @keyframes spin {
+                0% {
+                    background-position: 0 0;
+                }
+                100% {
+                    background-position: 318 0;
+                }
+            }
+            #div-page2 .commander-wrapper {
+                /* border: 2px solid yellow; */
+                position: relative;
+                width: 100vw;
+                height: 28.125vh;
+                top: 60%;
+                left: 50%;
+                transform: translate(-50%, 0);
+                overflow: hidden;
+                /* box-sizing: border-box; */
+            }
+            #div-page2 .commander {
+                box-sizing: border-box;
+                /* border: 2px solid yellow; */
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                /* width: 100vw; height: 180px;
+  top: 60%; left: 50%;
+  transform: translate(-50%, 0); */
+                display: inline;
+            }
+            #div-page2 .commander .slide {
+                /* width: 144px; height: 100%; */
+                width: 40%;
+                height: 100%;
+                position: relative;
+                margin-left: 10px;
+                float: left;
+                /* transform: translate(-50%, 0); */
+                /* background: url(../image/commander09_cr.jpg); */
+                background-size: cover;
+            }
+            #div-page2 .commander .detail {
+                /* width: 180px; height: 100%; */
+                width: 50%;
+                height: 100%;
+                float: left;
+                margin-left: 10px;
+                text-align: center;
+                color: #fff;
+            }
+            #div-page2 .commander .detail p {
+                text-indent: 15px;
+                text-align: left;
+                font-family: NSimSun;
+            }
+            #div-page2 #commander1 {
+                top: 0;
+            }
+            #div-page2 #commander2 {
+                /* top: -180px; */
+                top: -100%;
+            }
+            #div-page2 #commander3 {
+                top: -200%;
+            }
+            #div-page2 #commander4 {
+                top: -300%;
+            }
+        </style>
     </head>
+    
     <body id="body-main">
         <!-- the first page -->
         <!--
@@ -62,53 +344,57 @@
                     <div id="commander1" class="commander">
                         <div
                             class="slide"
-                            style="background: url(image/commander09_cr.jpg); background-size: cover">
-                        </div>
+                            style="background: url(image/commander09_cr.jpg); background-size: cover"
+                        ></div>
                         <div class="detail">
                             <h2>拉米雷斯.桑托斯</h2>
                             <p>
                                 火星联邦共和国第二舰队驱逐舰火控中心指挥官，年龄47，来自布莱德柏利环形区。
                             </p>
                         </div>
-                    </div>  <!-- commander 1 -->
+                    </div>
+                    <!-- commander 1 -->
                     <div id="commander2" class="commander">
                         <div
                             class="slide"
-                            style="background: url(image/commander08_cr.jpg); background-size: cover">
-                        </div>
+                            style="background: url(image/commander08_cr.jpg); background-size: cover"
+                        ></div>
                         <div class="detail">
                             <h2>查克.盖尔克奇</h2>
                             <p>
                                 火星联邦共和国泰坦8号扇区防卫指挥官，年龄93，曾任“罗克韦尔”号巡洋舰大副。
                             </p>
                         </div>
-                    </div>  <!-- commander 2 -->
+                    </div>
+                    <!-- commander 2 -->
                     <div id="commander3" class="commander">
                         <div
                             class="slide"
-                            style="background: url(image/commander07_cr.jpg); background-size: cover">
-                        </div>
+                            style="background: url(image/commander07_cr.jpg); background-size: cover"
+                        ></div>
                         <div class="detail">
                             <h2>林赛.斯图尔特</h2>
                             <p>
                                 基因工程专家，曾任火星共和国海军陆战队指挥官，年龄71，长于生物机电工程和执行特殊作战任务。
                             </p>
                         </div>
-                    </div>  <!-- commander 3 -->
+                    </div>
+                    <!-- commander 3 -->
                     <div id="commander4" class="commander">
                         <div
                             class="slide"
-                            style="background: url(image/commander01_cr.jpg); background-size: cover">
-                        </div>
+                            style="background: url(image/commander01_cr.jpg); background-size: cover"
+                        ></div>
                         <div class="detail">
                             <h2>谢林.罗曼洛夫</h2>
                             <p>
                                 火星共和国第6舰队“奥林匹斯山”号航空母舰指挥官，年龄73，来自盖尔20号综合区。
                             </p>
                         </div>
-                    </div>  <!-- commander 4 -->
-                </div>  <!-- commander-wrapper -->
-                
+                    </div>
+                    <!-- commander 4 -->
+                </div>
+                <!-- commander-wrapper -->
             </div>
             <!-- page2-->
 
@@ -129,9 +415,9 @@
             <!-- <div class="editBtn">编 辑</div> -->
             <button class="editBtn">编 辑</button>
             <div class="save-cancel">
-                <button class="btn">保存</button>
+                <button class="btn" id="saveBtn">保存</button>
                 <span class="span" style="width: 40px"></span>
-                <button class="btn">取消</button>
+                <button class="btn" id="cancelBtn">取消</button>
             </div>
 
             <div id="div-music">

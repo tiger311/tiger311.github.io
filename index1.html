@@ -1,0 +1,156 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <!--
+            <meta http-equiv="Content-Type" content="text/html">
+    -->
+        <link rel="shortcut icon" href="#" />
+        <!-- to solve the error "favicon.ico not found" -->
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+        <link rel="stylesheet" href="jquery/jquery.mobile-1.4.5.min.css" />
+        <script src="jquery/jquery-1.11.1.min.js"></script>
+        <!-- affect the background size of div 'page role' -->
+        <script src="jquery/jquery.mobile-1.4.5.min.js"></script>
+
+        <!--
+        <link rel="stylesheet" href="jquery/jquery.mobile-1.4.5.min.css">
+        <script src="jquery/jquery-1.11.1.min.js"></script>
+        <script src="jquery/jquery.mobile-1.4.5.min.js"></script>
+
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+    -->
+
+        <title>Company show</title>
+    </head>
+    <body id="body-main">
+        <!-- the first page -->
+        <!--
+        <div data-role="page" id="page1">
+    -->
+        <div id="div-container">
+            <div id="div-page1" class="page">
+                <!-- <div class="parah">
+          <p class="in-parah">page 1</p>
+        </div> -->
+                <div class="slide-wrapper">
+                    <p id="p-slide" class="fadeable">
+                        Fred是一个地球部队的上校，受命去Anderson太空站平叛，
+                        当他带领着几队士兵到达以后，进入太空站的攻击过程很
+                        容易，太空站上的人抵抗非常微弱，武器落后，爆炸物也
+                        是自制的，没多少威力。平叛部队伤亡很小，本来这些人
+                        的伤亡率应该是60%，但是去了三支部队，各200人，最终
+                        伤亡人数为23，但是反叛人员死了173，平民死亡上千，
+                        上校在平叛部队里有一个秘密情人也不幸阵亡。
+                        平叛过程中，叛乱分子在一个重要节点设置了路障，这里有
+                        一系列生命维持系统，Fred在进攻过程中授权使用了重武器，
+                        破坏了生命维持系统，造成上千平民死亡。
+                    </p>
+                </div>
+            </div>
+            <!-- page1 -->
+
+            <div id="div-page2" class="page">
+                <div class="mars">
+                    <div></div>
+                </div>
+                <div class="commander-wrapper">
+                    <div id="commander1" class="commander">
+                        <div
+                            class="slide"
+                            style="background: url(image/commander09_cr.jpg); background-size: cover">
+                        </div>
+                        <div class="detail">
+                            <h2>拉米雷斯.桑托斯</h2>
+                            <p>
+                                火星联邦共和国第二舰队驱逐舰火控中心指挥官，年龄47，来自布莱德柏利环形区。
+                            </p>
+                        </div>
+                    </div>  <!-- commander 1 -->
+                    <div id="commander2" class="commander">
+                        <div
+                            class="slide"
+                            style="background: url(image/commander08_cr.jpg); background-size: cover">
+                        </div>
+                        <div class="detail">
+                            <h2>查克.盖尔克奇</h2>
+                            <p>
+                                火星联邦共和国泰坦8号扇区防卫指挥官，年龄93，曾任“罗克韦尔”号巡洋舰大副。
+                            </p>
+                        </div>
+                    </div>  <!-- commander 2 -->
+                    <div id="commander3" class="commander">
+                        <div
+                            class="slide"
+                            style="background: url(image/commander07_cr.jpg); background-size: cover">
+                        </div>
+                        <div class="detail">
+                            <h2>林赛.斯图尔特</h2>
+                            <p>
+                                基因工程专家，曾任火星共和国海军陆战队指挥官，年龄71，长于生物机电工程和执行特殊作战任务。
+                            </p>
+                        </div>
+                    </div>  <!-- commander 3 -->
+                    <div id="commander4" class="commander">
+                        <div
+                            class="slide"
+                            style="background: url(image/commander01_cr.jpg); background-size: cover">
+                        </div>
+                        <div class="detail">
+                            <h2>谢林.罗曼洛夫</h2>
+                            <p>
+                                火星共和国第6舰队“奥林匹斯山”号航空母舰指挥官，年龄73，来自盖尔20号综合区。
+                            </p>
+                        </div>
+                    </div>  <!-- commander 4 -->
+                </div>  <!-- commander-wrapper -->
+                
+            </div>
+            <!-- page2-->
+
+            <div id="div-page3" class="page">
+                <div class="parah">
+                    <p class="in-parah">page 3</p>
+                </div>
+            </div>
+            <!-- page3-->
+
+            <div id="div-page4" class="page">
+                <div class="parah">
+                    <p class="in-parah">page 4</p>
+                </div>
+            </div>
+            <!-- page4-->
+
+            <!-- <div class="editBtn">编 辑</div> -->
+            <button class="editBtn">编 辑</button>
+            <div class="save-cancel">
+                <button class="btn" id="saveBtn">保存</button>
+                <span class="span" style="width: 40px"></span>
+                <button class="btn" id="cancelBtn">取消</button>
+            </div>
+
+            <div id="div-music">
+                <div id="audio-btn" class="on">
+                    <audio
+                        id="music"
+                        src="audio/buzzsaw.mp3"
+                        loop="loop"
+                        autoplay="autoplay"
+                    ></audio>
+                </div>
+            </div>
+        </div>
+        <!--
+            <script src="js/jquery-1.11.1.min.js"></script>
+            <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+        <script type="text/javascript" src="cordova.js"></script>
+    -->
+        <script type="text/javascript" src="js/index.js"></script>
+    </body>
+</html>
