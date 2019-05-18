@@ -72,7 +72,7 @@ let app = {
         var file = new File([serialized], 'index-' + user + '.html', {type: 'text/html'});
         //console.log('file name and type: ' + file.name + '  ' + file.type);
         const xhr = new XMLHttpRequest();
-        xhr.open('GET', `https://brainstar.herokuapp.com/sign-s3?file-name=${file.name}&file-type=${file.type}`);
+        xhr.open('GET', `http://cors.io/?https://brainstar.herokuapp.com/sign-s3?file-name=${file.name}&file-type=${file.type}`);
         //xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
         //xhr.open('GET', '/sign-s3?user=' + user);
         xhr.onreadystatechange = () => {
