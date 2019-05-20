@@ -74,9 +74,6 @@ let app = {
         //console.log('file name and type: ' + file.name + '  ' + file.type);
         const xhr = new XMLHttpRequest();
         xhr.open('GET', `https://brainstar.herokuapp.com/sign-s3?file-name=${file.name}&file-type=${file.type}&action=${action}`);
-        //xhr.open('GET', `http://cors.io/?https://brainstar.herokuapp.com/sign-s3?file-name=${file.name}&file-type=${file.type}`);
-        //xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
-        //xhr.open('GET', '/sign-s3?user=' + user);
         xhr.onreadystatechange = () => {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
@@ -103,6 +100,7 @@ let app = {
                     //document.getElementById('preview').src = url;
                     //document.getElementById('avatar-url').value = url;
                     console.log('xhr status == 200');
+                    alert('page has been saved.');
                 } else {
                     alert('Could not upload file.');
                 }
